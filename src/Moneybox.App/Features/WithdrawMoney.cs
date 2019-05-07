@@ -26,17 +26,17 @@ namespace Moneybox.App.Features
             Save(account);
         }
 
-        protected Account GetAccount(Guid accountId)
+        private Account GetAccount(Guid accountId)
         {
             return this.accountRepository.GetAccountById(accountId);
         }
 
-        protected void ProcessWithdrawal(Account account, decimal amount)
+        private void ProcessWithdrawal(Account account, decimal amount)
         {
             account.Withdraw(amount);
         }
 
-        protected void SendNotifications(Account account)
+        private void SendNotifications(Account account)
         {
             if (account.FundsLow())
             {
@@ -44,7 +44,7 @@ namespace Moneybox.App.Features
             }
         }
 
-        protected void Save(Account account)
+        private void Save(Account account)
         {
             this.accountRepository.Update(account);
         }

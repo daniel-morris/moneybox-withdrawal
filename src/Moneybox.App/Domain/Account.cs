@@ -6,7 +6,7 @@ namespace Moneybox.App
     {
         public const decimal PayInLimit = 4000m;
         public const decimal LowFundsThreshold = 500m;
-        public const decimal RmainingPayInLimitThreshold = 500m;
+        public const decimal RemainingPayInLimitThreshold = 500m;
 
         public Guid Id { get; set; }
 
@@ -41,19 +41,19 @@ namespace Moneybox.App
 
         public bool ApproachingPayInLimit()
         {
-            return PayInLimit - PaidIn < RmainingPayInLimitThreshold;
+            return PayInLimit - PaidIn < RemainingPayInLimitThreshold;
         }
 
-        protected void ValidateFundsForWithdrawal(decimal amount)
+        private void ValidateFundsForWithdrawal(decimal amount)
         {
             var newBalance = Balance - amount;
-            if (newBalance < 0m)
+            if (newBalance < decimal.Zero)
             {
                 throw new InvalidOperationException("Insufficient funds to make transfer");
             }
         }
 
-        protected void ValidatePaidInLimitForDeposit(decimal amount)
+        private void ValidatePaidInLimitForDeposit(decimal amount)
         {
             var newPaidInValue = PaidIn + amount;
             if (newPaidInValue > PayInLimit)
@@ -62,29 +62,21 @@ namespace Moneybox.App
             }
         }
 
-        protected void IncreaseBalance(decimal amount)
+        private void IncreaseBalance(decimal amount)
         {
             Balance += amount;
         }
-        protected void DecreaseBalance(decimal amount)
+        private void DecreaseBalance(decimal amount)
         {
             Balance -= amount;
         }
-        protected void IncreaseWithdrawn(decimal amount)
+        private void IncreaseWithdrawn(decimal amount)
         {
             Withdrawn += amount;
         }
-        protected void DecreaseWithdrawn(decimal amount)
-        {
-            Withdrawn -= amount;
-        }
-        protected void IncreasePaidIn(decimal amount)
+        private void IncreasePaidIn(decimal amount)
         {
             PaidIn += amount;
-        }
-        protected void DecreasePaidIn(decimal amount)
-        {
-            PaidIn -= amount;
         }
     }
 }
