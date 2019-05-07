@@ -32,6 +32,7 @@ Good luck!
 * Decision to change the order of the logic within TransferMoney.Execute, such that if a transfer fails due to the "to account" having reached its PaidIn Limit, the "from account user" won't get a low funds notification email. As no funds from the "from account" would have actually been withdrawn.
 * I feel that when there is logic in the Domain objects, then this should also be tested with unit tests. This is good for regression reasons and also to be careful and accurate, due to this code handling peoples money. I missed these due to lack of time and feel that for this test, I've demonstrated testing abilities on the Features.
 * An alternative way of solving this, would be to have a folder of Validators, that would do the validation work. These would be injected into the Features, shared between them and tested separately. As a result adding new features could be quicker. In reality, it's pretty similar however, having too many dependencies injected for everything can complicate matters and make it more difficult to debug.
+* I decided to use xUnit and Moq for unit testing, as I like the verifications that can be done with Moq at the assert stage of the test.
 * I decided to keep my solution simple and clean, opting for readability and maintainability.
 
 Thank you for taking the time to review my submission.
