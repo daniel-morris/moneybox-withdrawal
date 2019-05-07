@@ -29,7 +29,7 @@ Good luck!
 
 * Decision not to add new interfaces, as I didn't have access to your container and assume that this is part of a bigger solution, to be tested within.
 * Decision to change the calculation for the "Withdrawn" property when Withdrawing from an Account, I feel the amount withdrawn should increase not decrease. This is with the assumption that Withdrawn is the amount withdrawn and not the remaining limit that can be withdrawn.
-* Decision to change the order of the logic within TransferMoney.Execute, such that if a transfer would fail due to the PaidIn limit on the "to account", the "from account user" wouldn't get a low funds notification, as no funds were actually withdrawn in this case, as the transfer would have failed. Hope that makes sense.
-* I feel that if there is logic in the Domain objects, then they should also be tested with unit tests, for regression reasons and also as this relates to handling peoples money. I missed these due to lack of time.
-* I feel that it may be better to have a folder of Validators, that could do the validation work, these could be injected into the Features, shared between them and tested separately.
+* Decision to change the order of the logic within TransferMoney.Execute, such that if a transfer would fail due to the PaidIn limit on the "to account", the "from account user" wouldn't get a low funds notification. As no funds from the "from account" would have actually been withdrawn, in the failed transfer attempt.
+* I feel that if there is logic in the Domain objects, then they should also be tested with unit tests. This is good for regression reasons and also to be careful and accurate, due to this code handling peoples money. I missed these due to lack of time.
+* An alternative way of solving this, would be to have a folder of Validators, that would do the validation work. These would be injected into the Features, shared between them and tested separately. As a result adding new features could be quicker.
 * I decided to keep my solution simple and clean, opting for readability and maintainability.
